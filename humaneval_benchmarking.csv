@@ -1,0 +1,165 @@
+Task,Description,Code Llama-34b,GPT-3.5,GPT-4,StarCoder2-3b,StarCoder2-7b,StarCoder2-7b-FT,Llama-4-Maverick-17b
+HumanEval/0,Check if there are any two numbers in the given list that are closer to each other than the given threshold.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/1,Separate multiple groups of nested parentheses into separate strings and return a list of those strings.,0%,40%,60%,0%,20%,30%,60%
+HumanEval/2,Return the decimal part of a positive floating point number.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/3,Detect if at any point the balance of the bank account falls below zero and return True otherwise return False.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/4,Calculate the mean absolute deviation of a given list of numbers.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/5,Insert a number 'delimeter' between every two consecutive elements of the input list numbers.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/6,Parse a string representing multiple groups of nested parentheses and return a list of the deepest level of nesting for each group.,0%,100%,100%,0%,0%,10%,80%
+HumanEval/7,Filter an input list of strings to only include strings that contain a given substring.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/8,Calculate the sum and product of all the integers in a given list.,0%,100%,100%,100%,100%,100%,100%
+HumanEval/9,Generate a list of rolling maximum elements found until a given moment in the sequence.,100%,100%,0%,100%,100%,100%,100%
+HumanEval/10,The function make_palindrome should find the shortest palindrome that begins with the supplied string.,0%,100%,100%,0%,0%,10%,90%
+HumanEval/11,Perform binary XOR on two input strings and return the result as a string.,90%,100%,100%,30%,80%,90%,100%
+HumanEval/12,Return the longest string from a list of strings or None if the list is empty.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/13,Calculate and return the greatest common divisor of two integers.,100%,100%,100%,80%,100%,100%,100%
+HumanEval/14,Return a list of all prefixes of the input string from shortest to longest.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/15,Return a string containing space-delimited numbers starting from 0 up to n inclusive.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/16,Count the number of distinct characters in a given string regardless of case.,100%,100%,100%,90%,100%,100%,100%
+HumanEval/17,Parse a string representing musical notes and return a list of integers representing the duration of each note in beats.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/18,Count how many times a given substring can be found in the original string including overlapping cases.,100%,100%,100%,20%,60%,80%,100%
+HumanEval/19,Sort the numbers in the input string from smallest to largest.,90%,100%,100%,0%,40%,60%,100%
+HumanEval/20,Find and return the two numbers in a list that are closest to each other.,0%,100%,100%,0%,20%,30%,90%
+HumanEval/21,Rescale a list of numbers to the unit interval [0 1] using a linear transformation.,100%,100%,100%,40%,80%,100%,100%
+HumanEval/22,Filter a given list of any python values and return only the integers.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/23,Return the length of a given string.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/24,Find the largest number that evenly divides a given number n smaller than n.,0%,100%,100%,0%,50%,80%,100%
+HumanEval/25,Factorize should return a list of prime factors of a given integer in ascending order.,100%,100%,100%,20%,60%,80%,100%
+HumanEval/26,Remove all elements from the list that occur more than once while keeping the order of the remaining elements the same.,0%,100%,100%,0%,30%,50%,100%
+HumanEval/27,The function should flip the case of each character in the given string.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/28,Concatenate a list of strings into a single string.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/29,Filter an input list of strings to only include strings that start with a given prefix.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/30,Return a new list containing only the positive numbers from the input list.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/31,Determine whether a given number is prime or not.,100%,100%,100%,50%,90%,100%,100%
+HumanEval/32,The function find_zero should find a zero point of a polynomial with given coefficients.,0%,0%,30%,0%,0%,0%,10%
+HumanEval/33,Sort the values at indices divisible by three in the given list while keeping the values at other indices unchanged.,0%,100%,100%,0%,10%,40%,90%
+HumanEval/34,Return a sorted list of unique elements from the input list.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/35,Return the maximum element in the given list.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/36,Count the number of times the digit 7 appears in integers less than n that are divisible by 11 or 13.,0%,90%,100%,0%,0%,10%,70%
+HumanEval/37,Sort the even indices of a list in ascending order while keeping the odd indices unchanged.,0%,100%,100%,0%,20%,50%,90%
+HumanEval/38,The function encode_cyclic should return an encoded string by cycling groups of three characters while the function decode_cyclic should return the decoded string from an encoded string.,10%,100%,100%,0%,10%,30%,80%
+HumanEval/39,Return the n-th number that is both a Fibonacci number and a prime number.,0%,20%,100%,0%,0%,0%,40%
+HumanEval/40,Check if there are three distinct elements in a list that sum to zero.,100%,100%,100%,10%,60%,80%,100%
+HumanEval/41,Count the number of collisions between cars moving in opposite directions on an infinitely long road.,0%,0%,60%,0%,0%,0%,20%
+HumanEval/42,The function should return a list with all elements incremented by 1.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/43,Check if there are two distinct elements in a list that sum to zero.,100%,100%,100%,40%,80%,90%,100%
+HumanEval/44,Convert a given number from its current base to a specified base and return the string representation of the converted number.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/45,Calculate and return the area of a triangle given the length of one side and the height.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/46,Compute the n-th element of the Fib4 number sequence efficiently without using recursion.,40%,100%,100%,0%,50%,70%,100%
+HumanEval/47,Calculate and return the median of the elements in the given list.,100%,100%,100%,50%,90%,100%,100%
+HumanEval/48,Check if the given string is a palindrome.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/49,Calculate the value of 2 raised to the power of n modulo p.,100%,100%,100%,60%,90%,100%,100%
+HumanEval/50,The function above should decode a string that has been encoded using the encode_shift function.,100%,100%,100%,10%,50%,70%,100%
+HumanEval/51,The function should remove all vowels from a given string.,20%,100%,100%,10%,60%,90%,100%
+HumanEval/52,Return True if all numbers in the list l are below the threshold t.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/53,The function should add two numbers together.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/54,Check if two words have the same characters.,20%,0%,100%,0%,10%,20%,60%
+HumanEval/55,Return the n-th Fibonacci number.,100%,100%,0%,90%,100%,100%,100%
+HumanEval/56,Check if every opening bracket in the given string has a corresponding closing bracket.,100%,100%,100%,10%,60%,80%,100%
+HumanEval/57,Return True if the elements in the given list are monotonically increasing or decreasing.,100%,100%,100%,40%,90%,100%,100%
+HumanEval/58,Return a sorted list of unique common elements between two input lists.,100%,100%,100%,60%,100%,100%,100%
+HumanEval/59,Return the largest prime factor of a given number.,0%,100%,100%,0%,40%,60%,90%
+HumanEval/60,The function sum_to_n should calculate the sum of numbers from 1 to n.,100%,100%,100%,100%,100%,100%,100%
+HumanEval/61,Check if every opening bracket in the given string has a corresponding closing bracket.,100%,100%,100%,10%,60%,80%,100%
+HumanEval/62,Calculate the derivative of a polynomial represented by a list of coefficients.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/63,Compute the n-th element of the FibFib number sequence efficiently.,0%,100%,100%,0%,20%,50%,90%
+HumanEval/64,Count the number of vowels in a given word considering 'y' as a vowel only when it is at the end of the word.,0%,100%,90%,0%,10%,40%,80%
+HumanEval/65,Shift the digits of the integer x to the right by shift positions and return the result as a string or reverse the digits if shift is greater than the number of digits.,0%,60%,100%,0%,10%,30%,70%
+HumanEval/66,The function should calculate the sum of the ASCII codes of the uppercase characters in a given string.,100%,100%,100%,60%,100%,100%,100%
+HumanEval/67,Return the number of mango fruits in the basket given the total number of fruits and the number of apples and oranges.,0%,80%,100%,0%,40%,70%,90%
+HumanEval/68,The function pluck should find the smallest even value in an array representing a branch of a tree and return it along with its index.,90%,100%,100%,0%,40%,60%,100%
+HumanEval/69,Return the greatest integer that has a frequency greater than or equal to the value of the integer itself or -1 if no such integer exists.,0%,60%,100%,0%,10%,30%,80%
+HumanEval/70,Sort a given list of integers in a specific order.,40%,70%,100%,0%,20%,50%,80%
+HumanEval/71,Calculate the area of a triangle if the given side lengths form a valid triangle otherwise return -1.,0%,100%,100%,0%,50%,80%,100%
+HumanEval/72,Return True if the object q is balanced and the sum of its elements is less than or equal to the maximum weight w otherwise return False.,100%,100%,100%,20%,80%,100%,100%
+HumanEval/73,Find the minimum number of elements that need to be changed to make the array palindromic.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/74,Return the list with the total number of characters in all strings less than the other list or the first list if they have the same number of characters.,10%,20%,80%,0%,10%,20%,50%
+HumanEval/75,Check if the given number is the product of three prime numbers.,0%,0%,100%,0%,0%,10%,40%
+HumanEval/76,The function should determine whether a given number is a simple power of another given number.,0%,70%,80%,0%,10%,40%,80%
+HumanEval/77,Check if the given integer is a cube of some integer number.,0%,50%,50%,0%,10%,20%,50%
+HumanEval/78,Count the number of prime hexadecimal digits in a given hexadecimal number.,10%,100%,100%,0%,30%,60%,100%
+HumanEval/79,Convert a decimal number to binary format and return it as a string with 'db' at the beginning and end.,0%,100%,100%,0%,50%,80%,100%
+HumanEval/80,Check if a given string is ""happy"" by determining if its length is at least 3 and every 3 consecutive letters are distinct.,100%,100%,100%,10%,60%,90%,100%
+HumanEval/81,The function should convert a list of GPAs into a list of corresponding letter grades.,0%,80%,100%,0%,40%,70%,100%
+HumanEval/82,Return True if the length of the input string is a prime number and False otherwise.,100%,100%,100%,30%,80%,90%,100%
+HumanEval/83,Count the number of n-digit positive integers that start or end with 1.,100%,40%,0%,0%,20%,30%,60%
+HumanEval/84,Return the total sum of the digits of a positive integer in binary form.,20%,70%,0%,0%,10%,40%,80%
+HumanEval/85,Add the even elements that are at odd indices in a given non-empty list of integers.,60%,100%,100%,10%,60%,80%,100%
+HumanEval/86,The function should return a string where all the words are replaced by a new word with their characters arranged in ascending order based on ascii value while keeping the order of words and blank spaces in the sentence.,100%,100%,100%,0%,50%,80%,100%
+HumanEval/87,The function should return a list of tuples representing the coordinates of the integer x in the given 2-dimensional list sorted by rows in ascending order and by columns in descending order.,60%,100%,0%,0%,30%,50%,90%
+HumanEval/88,Sort the given array in ascending order if the sum of the first and last index values is odd or sort it in descending order if the sum is even and return a copy of the sorted array.,10%,90%,100%,0%,20%,50%,90%
+HumanEval/89,Encrypt a given string by shifting each letter down the alphabet by two multiplied to two places.,0%,100%,100%,0%,40%,70%,100%
+HumanEval/90,The function should return the second smallest element in a given list of integers or None if there is no such element.,0%,100%,100%,0%,30%,60%,90%
+HumanEval/91,Count the number of sentences that start with the word ""I"" in a given string.,0%,0%,0%,0%,0%,0%,10%
+HumanEval/92,Return true if one of the numbers is equal to the sum of the other two and all numbers are integers; otherwise return false.,70%,100%,100%,20%,80%,90%,100%
+HumanEval/93,Encode a given message by swapping the case of all letters and replacing vowels with the letter that appears 2 places ahead in the English alphabet.,0%,10%,0%,0%,0%,10%,30%
+HumanEval/94,The function should find the largest prime value in a given list of integers and return the sum of its digits.,20%,100%,100%,0%,20%,50%,90%
+HumanEval/95,Check if all keys in a dictionary are either all lowercase or all uppercase strings and return True if they are otherwise return False.,0%,0%,100%,0%,0%,0%,30%
+HumanEval/96,Return an array of the first n prime numbers that are less than n.,0%,100%,100%,0%,30%,50%,90%
+HumanEval/97,Return the product of the unit digits of two given integers.,100%,100%,100%,60%,100%,100%,100%
+HumanEval/98,Count the number of uppercase vowels in even indices of a given string.,0%,70%,100%,0%,10%,40%,80%
+HumanEval/99,Return the closest integer to a given number rounding away from zero if the number is equidistant from two integers.,0%,100%,100%,0%,40%,60%,100%
+HumanEval/100,Create a pile of stones with a specific number of levels where each level has a specific number of stones.,0%,0%,100%,0%,0%,20%,60%
+HumanEval/101,Split a string of words separated by commas or spaces into an array of individual words.,0%,100%,100%,0%,50%,80%,100%
+HumanEval/102,Return the largest even integer within the range [x y] inclusive or -1 if there is no such number.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/103,Calculate the average of a range of integers round it to the nearest integer and convert it to binary.,0%,20%,100%,0%,0%,10%,50%
+HumanEval/104,Return a sorted list of positive integers from the input list that do not contain any even digits.,70%,100%,100%,0%,40%,70%,100%
+HumanEval/105,Sort an array of integers between 1 and 9 inclusive reverse the array and replace each digit with its corresponding name.,50%,100%,90%,0%,30%,60%,90%
+HumanEval/106,Calculate and return a list of size n where each element at index i is the factorial of i if i is even or the sum of numbers from 1 to i otherwise.,80%,100%,30%,0%,40%,60%,90%
+HumanEval/107,The function should return a tuple containing the number of even and odd integer palindromes within the range (1 n).,100%,100%,100%,0%,40%,70%,100%
+HumanEval/108,Count the number of elements in the array that have a sum of digits greater than 0.,0%,0%,10%,0%,0%,0%,10%
+HumanEval/109,Determine if it is possible to obtain a sorted array by performing right shift operations on the given array.,0%,100%,100%,0%,20%,40%,90%
+HumanEval/110,Determine whether it is possible to exchange elements between two lists to make the first list contain only even numbers.,0%,10%,100%,0%,0%,10%,50%
+HumanEval/111,Return a dictionary containing the letter(s) with the highest occurrence and their corresponding count from a given string.,0%,90%,100%,0%,30%,60%,100%
+HumanEval/112,The function should delete characters from string s that are equal to any character in string c and then check if the resulting string is a palindrome.,100%,100%,100%,10%,60%,90%,100%
+HumanEval/113,Count the number of odd digits in each string of a given list and return a list of strings describing the count for each string.,0%,0%,100%,0%,0%,10%,40%
+HumanEval/114,Calculate the minimum sum of any non-empty sub-array in the given array of integers.,40%,100%,100%,0%,40%,70%,100%
+HumanEval/115,The function max_fill should calculate the number of times the buckets need to be lowered in order to empty the wells in the given grid.,0%,20%,0%,0%,0%,0%,20%
+HumanEval/116,Sort an array of non-negative integers based on the number of ones in their binary representation in ascending order and for numbers with the same number of ones sort based on decimal value.,100%,100%,100%,0%,50%,80%,100%
+HumanEval/117,Return a list of words from the input string that contain exactly n consonants.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/118,Find the closest vowel that stands between two consonants from the right side of the word.,0%,20%,10%,0%,0%,10%,30%
+HumanEval/119,Check if it is possible to concatenate two strings of parentheses in some order to create a balanced string.,0%,0%,40%,0%,0%,0%,20%
+HumanEval/120,Return a sorted list of the maximum k numbers in the given array.,0%,0%,0%,0%,0%,0%,10%
+HumanEval/121,Return the sum of all odd elements in even positions in a given list of integers.,80%,0%,100%,0%,20%,40%,80%
+HumanEval/122,The function should return the sum of the elements with at most two digits from the first k elements of the given array.,100%,10%,100%,0%,40%,70%,100%
+HumanEval/123,Return a sorted list of the odd numbers in the Collatz sequence for a given positive integer.,10%,100%,100%,0%,30%,50%,90%
+HumanEval/124,Validate a given date string and return True if the date is valid according to the specified rules otherwise return False.,90%,100%,100%,0%,20%,50%,100%
+HumanEval/125,The function should split a string of words on whitespace or commas and if neither exists it should return the number of lowercase letters with odd order in the alphabet.,0%,0%,100%,0%,0%,0%,30%
+HumanEval/126,Check if a given list of numbers is sorted in ascending order and does not contain more than one duplicate of the same number.,0%,0%,50%,0%,0%,0%,20%
+HumanEval/127,Determine whether the length of the intersection of two intervals is a prime number.,90%,10%,80%,0%,0%,20%,60%
+HumanEval/128,The function prod_signs should calculate the sum of the magnitudes of integers in the input array multiplied by the product of the signs of each number.,100%,80%,60%,0%,30%,60%,90%
+HumanEval/129,Find the minimum path of length k in a grid where each cell contains a unique value and return the ordered list of values on the cells that the minimum path goes through.,0%,0%,20%,0%,0%,0%,10%
+HumanEval/130,Return a list of the first n + 1 numbers of the Tribonacci sequence.,0%,0%,0%,0%,0%,0%,10%
+HumanEval/131,Return the product of the odd digits in a given positive integer or 0 if all digits are even.,0%,10%,100%,0%,0%,20%,70%
+HumanEval/132,Check if a given string contains a valid subsequence of square brackets where at least one bracket is nested.,0%,0%,0%,0%,0%,0%,0%
+HumanEval/133,The function should calculate the sum of the squared numbers in a given list after rounding each element to the nearest upper integer.,0%,0%,100%,0%,0%,10%,50%
+HumanEval/134,Check if the last character of a given string is an alphabetical character and is not part of a word.,0%,90%,0%,0%,10%,30%,70%
+HumanEval/135,Return the largest index of an element that is not greater than or equal to the element immediately preceding it or -1 if no such element exists.,0%,80%,100%,0%,20%,50%,90%
+HumanEval/136,Return a tuple containing the largest negative integer and the smallest positive integer from a given list or None if there are no negative or positive integers.,100%,100%,100%,20%,60%,90%,100%
+HumanEval/137,Return the larger variable in its given variable type or None if the values are equal.,0%,0%,90%,0%,0%,0%,30%
+HumanEval/138,Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.,100%,100%,90%,0%,40%,70%,100%
+HumanEval/139,Calculate the special factorial of a given integer.,0%,80%,100%,0%,20%,50%,90%
+HumanEval/140,Replace spaces in a given string with underscores and if there are more than 2 consecutive spaces replace them with a hyphen.,0%,70%,50%,0%,20%,40%,80%
+HumanEval/141,Validate whether a given file name meets certain criteria.,0%,100%,90%,0%,20%,50%,90%
+HumanEval/142,Calculate the sum of squared and cubed entries in a list based on their index.,100%,0%,100%,0%,30%,60%,100%
+HumanEval/143,Return a string containing the words from the original sentence whose lengths are prime numbers in the same order as the original sentence.,100%,100%,100%,0%,40%,80%,100%
+HumanEval/144,The function should determine whether the product of two fractions is a whole number or not.,90%,100%,100%,0%,30%,70%,100%
+HumanEval/145,Sort the given list of integers in ascending order based on the sum of their digits with ties broken by the index in the original list.,0%,0%,0%,0%,0%,0%,0%
+HumanEval/146,Count the number of elements in the input array that are greater than 10 and have both the first and last digits as odd numbers.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/147,Calculate the number of triples in an array where the sum of the elements is a multiple of 3.,0%,90%,0%,0%,10%,30%,70%
+HumanEval/148,Return a tuple of planets whose orbits are located between the orbit of planet1 and the orbit of planet2 sorted by proximity to the sun.,0%,100%,80%,0%,20%,50%,90%
+HumanEval/149,Delete strings with odd lengths from a list of strings and return the remaining strings in ascending order of length with alphabetical sorting for strings of the same length.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/150,Return the value of x if n is a prime number and return the value of y otherwise.,100%,100%,100%,10%,70%,90%,100%
+HumanEval/151,Calculate the sum of squares of the odd numbers in the given list ignoring negative numbers and non-integers.,50%,100%,90%,0%,30%,60%,90%
+HumanEval/152,The function should compare the guesses of a person with the actual scores of a number of matches and return an array indicating how far off each guess was.,100%,100%,100%,30%,90%,100%,100%
+HumanEval/153,Return the strongest extension for a given class name and list of extensions.,10%,70%,50%,0%,10%,30%,60%
+HumanEval/154,Check if the second word or any of its rotations is a substring in the first word.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/155,Return a tuple containing the count of even and odd digits in the given integer.,0%,0%,0%,0%,0%,0%,10%
+HumanEval/156,Convert a positive integer to its lowercase Roman numeral equivalent.,40%,100%,100%,0%,20%,50%,90%
+HumanEval/157,Check if the given lengths of the three sides of a triangle form a right-angled triangle.,0%,100%,100%,0%,50%,80%,100%
+HumanEval/158,Return the word with the maximum number of unique characters from a list of strings.,40%,100%,100%,0%,30%,60%,100%
+HumanEval/159,The function should calculate the total number of carrots eaten and the number of carrots remaining after a rabbit has eaten a certain number of carrots and still needs to eat more.,0%,50%,100%,0%,0%,20%,60%
+HumanEval/160,Evaluate an algebraic expression using the given operators and operands.,0%,100%,50%,0%,20%,40%,80%
+HumanEval/161,Reverse the case of letters in a string and if the string contains no letters reverse the string.,0%,100%,100%,0%,30%,60%,100%
+HumanEval/162,Convert a given string into its MD5 hash equivalent.,100%,100%,100%,0%,50%,90%,100%
+HumanEval/163,Generate a list of even digits between two given positive integers in ascending order.,0%,0%,80%,0%,0%,10%,40%

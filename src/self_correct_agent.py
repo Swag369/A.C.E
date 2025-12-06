@@ -3,8 +3,7 @@ import os
 import ast
 import subprocess
 import tempfile
-import datetime
-import operator
+import datetimem
 from typing import Dict, List, Literal, Annotated
 from langchain_core.messages import AnyMessage
 from langchain_core.prompts import ChatPromptTemplate
@@ -18,6 +17,7 @@ llm = ChatGroq(
     groq_api_key="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",
     temperature=0,
 )
+
 search_tool = DuckDuckGoSearchRun()
 
 class AgentState(BaseModel):
@@ -28,56 +28,44 @@ class AgentState(BaseModel):
     search_results: str = ""
     iteration: int = 0
     final_answer: str = ""
-    execution_output: str = ""
     logs: Annotated[List[str], operator.add] = Field(default_factory=list)
 
 class TestSuite(BaseModel):
-    test_code: str = Field(description="Complete Python unittest code with minimum 10 test cases.")
+    test_code: str = Field(description="Complete Python unittest code.")
 
 class Implementation(BaseModel):
     impl_code: str = Field(description="The functional Python code.")
 
+
 def log_entry(step_name: str, content: str) -> str:
     timestamp = datetime.datetime.now().strftime("%H:%M:%S")
-    return f"[{timestamp}] {step_name}\n{content}\n"
+    return f"\n{'='*20}\n[{timestamp}] STEP: {step_name}\n{'='*20}\n{content}\n"
+
+
 
 def generate_tests(state: AgentState) -> Dict:
+    """Step 1: Generate Tests."""
     prompt = ChatPromptTemplate.from_messages([
-        ("system", """You are a Senior QA Engineer. Write a comprehensive Python `unittest` suite for the user's goal.
-
-CRITICAL REQUIREMENTS:
-1. Import unittest at the top
-2. Create a test class inheriting from unittest.TestCase
-3. Write EXACTLY 10 or MORE individual test methods (def test_*):
-   - Standard cases
-   - Edge cases (empty, single element, boundary values)
-   - Negative numbers, zeros, large values
-   - Duplicates
-   - Type variations if applicable
-4. Each test method should use self.assert* statements
-5. DO NOT include the implementation, only tests
-6. Make code self-contained
-
-Count your test methods before submitting. MINIMUM 10 test methods."""),
+        ("system", "Write a comprehensive Python `unittest` suite for the user's goal. Include Edge Cases. Minimum of 10 testcases"),
         ("human", "Goal: {goal}")
     ])
     res = (prompt | llm.with_structured_output(TestSuite)).invoke({"goal": state.goal})
     return {
         "test_code": res.test_code,
-        "logs": [log_entry("TEST GENERATION", "Tests generated with MINIMUM 10 test cases")]
+        "logs": [log_entry("TEST GENERATION", res.test_code[:300] + "...")]
     }
 
 def fix_tests(state: AgentState) -> Dict:
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", """You are a Senior QA Engineer. The tests you wrote are failing the implementation. Fix the tests.
 
-CRITICAL REQUIREMENTS:
-1. Write EXACTLY 10 or MORE individual test methods
-2. If test logic is flawed (too strict on non-deterministic outputs), relax or fix it
-3. Keep all edge cases covered
-4. Each test method must use self.assert* statements
-5. Count your test methods: MINIMUM 10 required."""),
-        ("human", "Goal: {goal}\nCurrent Tests: {test_code}\nImplementation: {impl_code}\nError: {error}\n\nRewrite to be correct and robust with MINIMUM 10 test methods.")
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", "You are a QA Engineer. The tests you wrote are failing the implementation. "
+                   "If the test logic is flawed (e.g., too strict on non-deterministic outputs), relax or fix the test case. minimum of 10 testcases"),
+        ("human", """Goal: {goal}
+        Current Tests: {test_code}
+        Implementation: {impl_code}
+        Error: {error}
+
+        Rewrite the tests to be correct and robust.""")
     ])
     res = (prompt | llm.with_structured_output(TestSuite)).invoke({
         "goal": state.goal,
@@ -87,23 +75,25 @@ CRITICAL REQUIREMENTS:
     })
     return {
         "test_code": res.test_code,
-        "logs": [log_entry("FIX TESTS", "Tests updated with MINIMUM 10 test cases")]
+        "logs": [log_entry("FIX TESTS", "Tests updated based on execution error.")]
     }
 
 def retrieval_node(state: AgentState) -> Dict:
+
     query = f"python {state.goal} library documentation"
     if state.error and ("ImportError" in state.error or "ModuleNotFoundError" in state.error):
         try:
             results = search_tool.invoke(query)
             return {
                 "search_results": results,
-                "logs": [log_entry("RETRIEVAL", "Documentation retrieved")]
+                "logs": [log_entry("RETRIEVAL", f"Found: {results[:200]}...")]
             }
         except:
             pass
     return {"logs": [log_entry("RETRIEVAL", "Skipped")]}
 
 def generate_implementation(state: AgentState) -> Dict:
+
     context = f"Docs: {state.search_results}\nError: {state.error}" if state.error else ""
 
     prompt = ChatPromptTemplate.from_messages([
@@ -111,50 +101,48 @@ def generate_implementation(state: AgentState) -> Dict:
         ("human", "Goal: {goal}\nTests: {test_code}\nContext: {context}")
     ])
     res = (prompt | llm.with_structured_output(Implementation)).invoke({
-        "goal": state.goal,
-        "test_code": state.test_code,
-        "context": context
+        "goal": state.goal, "test_code": state.test_code, "context": context
     })
     return {
         "impl_code": res.impl_code,
-        "logs": [log_entry("CODE GENERATION", "Implementation generated")]
+        "logs": [log_entry("CODE GENERATION", res.impl_code[:300] + "...")]
     }
 
 def static_check(state: AgentState) -> Dict:
+
     try:
         ast.parse(state.impl_code)
-        return {"error": None, "logs": [log_entry("STATIC CHECK", "Syntax valid")]}
+        return {"error": None, "logs": [log_entry("STATIC CHECK", "Passed")]}
     except SyntaxError as e:
-        return {"error": str(e), "logs": [log_entry("STATIC CHECK", f"Syntax Error: {e}")]}
+        return {"error": str(e), "logs": [log_entry("STATIC CHECK", f"Failed: {e}")]}
 
 def execute_tests(state: AgentState) -> Dict:
-    if state.error:
-        return {"logs": [log_entry("EXECUTION", "Skipped due to static error")]}
+
+    if state.error: return {"logs": [log_entry("EXECUTION", "Skipped due to Static Error")]}
 
     full_code = f"{state.impl_code}\n\n{state.test_code}\n\nif __name__ == '__main__':\n    unittest.main()"
     with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as tmp:
         tmp.write(full_code)
         fname = tmp.name
+
     try:
         proc = subprocess.run(["python", fname], capture_output=True, text=True, timeout=10)
         output = proc.stdout + "\n" + proc.stderr
         return_code = proc.returncode
     except subprocess.TimeoutExpired:
-        output = "TIMEOUT: Execution took too long"
+        output = "Timeout"
         return_code = 1
     finally:
         os.remove(fname)
 
-    exec_log = log_entry("EXECUTION OUTPUT", output)
-
     return {
-        "execution_output": output,
         "error": output if return_code != 0 else None,
         "iteration": state.iteration + 1,
-        "logs": [exec_log]
+        "logs": [log_entry("EXECUTION", f"Result Code: {return_code}\nOutput: {output[:500]}")]
     }
 
 def decide_next(state: AgentState) -> Literal["fix_tests", "retrieval", "generate_implementation", "synthesize"]:
+
     if state.error is None:
         return "synthesize"
 
@@ -162,24 +150,26 @@ def decide_next(state: AgentState) -> Literal["fix_tests", "retrieval", "generat
         return "synthesize"
 
     if "AssertionError" in state.error and state.iteration % 2 == 0:
-        return "fix_tests"
+         return "fix_tests"
 
-    if "ImportError" in state.error or "ModuleNotFoundError" in state.error:
+    # 2. If Import Error, search
+    if "ImportError" in state.error:
         return "retrieval"
 
+    # 3. Default: Fix Code
     return "generate_implementation"
 
 def synthesize(state: AgentState) -> Dict:
-    status = "PASSED ✓" if state.error is None else "FAILED (Max retries)"
-    summary = f"Status: {status}\nIterations: {state.iteration}"
+    status = "Pass" if state.error is None else "Fail"
     return {
-        "final_answer": summary,
-        "logs": [log_entry("FINISHED", summary)]
+        "final_answer": f"Status: {status}",
+        "logs": [log_entry("FINISHED", f"Final Status: {status}")]
     }
 
+# --- GRAPH ---
 builder = StateGraph(AgentState)
 builder.add_node("generate_tests", generate_tests)
-builder.add_node("fix_tests", fix_tests)
+builder.add_node("fix_tests", fix_tests) # New Node
 builder.add_node("retrieval", retrieval_node)
 builder.add_node("generate_implementation", generate_implementation)
 builder.add_node("static_check", static_check)
@@ -192,10 +182,9 @@ builder.add_edge("fix_tests", "generate_implementation")
 builder.add_edge("retrieval", "generate_implementation")
 builder.add_edge("generate_implementation", "static_check")
 
-def check_static(state):
-    return "generate_implementation" if state.error else "execute_tests"
-
+def check_static(state): return "generate_implementation" if state.error else "execute_tests"
 builder.add_conditional_edges("static_check", check_static)
+
 builder.add_conditional_edges(
     "execute_tests",
     decide_next,
@@ -207,63 +196,29 @@ builder.add_conditional_edges(
     }
 )
 builder.add_edge("synthesize", END)
-
 graph = builder.compile()
 
-log_file_path = None
-
-def run_tdd_agent(goal: str):
-    global log_file_path
-
-    state = AgentState(goal=goal)
-    final_state = graph.invoke(state)
-
-    test_display = f"### Generated Test Suite\n```python\n{final_state['test_code']}\n```"
-    impl_display = f"### Implementation\n```python\n{final_state['impl_code']}\n```"
-
-    full_logs = "\n".join(final_state['logs'])
-
+# --- UI ---
+def run_agent(goal):
+    res = graph.invoke(AgentState(goal=goal))
+    full_log = "".join(res["logs"])
     with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as f:
-        f.write(full_logs)
-        log_file_path = f.name
+        f.write(full_log)
+        path = f.name
+    return res['test_code'], res['impl_code'], full_log, path, res['final_answer']
 
-    status_icon = "✓ PASSED" if final_state['error'] is None else "✗ FAILED"
-    final_report = f"# {status_icon}\n\nIterations: {final_state['iteration']}"
-
-    return test_display, impl_display, full_logs, final_report, log_file_path
-
-with gr.Blocks(title="TDD Code Agent") as demo:
+with gr.Blocks(title="Self-Correcting Agent") as demo:
     gr.Markdown("# A.C.E - Agentic Coding Engine")
-    gr.Markdown("I will generate **Edge Case Tests** first, then write code to pass them.")
-
+    goal = gr.Textbox(label="Goal")
+    btn = gr.Button("Run")
     with gr.Row():
-        goal_input = gr.Textbox(label="Programming Goal", placeholder="e.g. Implement a function to find the longest palindrome", lines=2)
-        run_btn = gr.Button("Run TDD Cycle", variant="primary")
+        tc = gr.Code(label="Tests")
+        ic = gr.Code(label="Implementation")
+    logs = gr.Textbox(label="Logs", lines=10)
+    dl = gr.File(label="Download Logs")
+    stat = gr.Markdown()
+    btn.click(run_agent, inputs=goal, outputs=[tc, ic, logs, dl, stat])
 
-    with gr.Row():
-        with gr.Column(scale=1):
-            gr.Markdown("### Step 1: Tests")
-            out_tests = gr.Markdown()
-        with gr.Column(scale=1):
-            gr.Markdown("### Step 2: Solution")
-            out_impl = gr.Markdown()
-
-    with gr.Row():
-        with gr.Column():
-            gr.Markdown("### Execution Output (unittest)")
-            out_logs = gr.Textbox(label="Terminal Output", lines=12, interactive=False)
-        with gr.Column():
-            gr.Markdown("### Final Status")
-            out_final = gr.Markdown()
-
-    with gr.Row():
-        dl_logs = gr.File(label="Download Logs")
-
-    run_btn.click(
-        fn=run_tdd_agent,
-        inputs=[goal_input],
-        outputs=[out_tests, out_impl, out_logs, out_final, dl_logs]
-    )
 
 if __name__ == "__main__":
     demo.launch(share=True, debug=True)

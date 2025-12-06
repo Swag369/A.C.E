@@ -9,10 +9,10 @@ The system combines LangGraph, StarCoder2, QLoRA fine-tuning, Python sandboxing,
 ## Key Features
 
 **Four agentic paradigms**
-- REPL agent: iterative generation + execution corrections
-- TDD Tool: test-first generation, then implementation
-- Self-Correcting Tool: repairs both tests and implementation
-- RAG-powered Tool: retrieves internal documentation using FAISS
+- REPL agent ([repl_agent.py](./src/repl_agent.py)): iterative generation + execution corrections
+- TDD Tool ([tdd_agent.py](./src/tdd_agent.py)): test-first generation, then implementation
+- Self-Correcting Tool ([self_correct_agent.py](./src/self_correct_agent.py)): repairs both tests and implementation
+- RAG-powered Tool ([rag_agent.py](./src/rag_agent.py)): retrieves internal documentation using FAISS
 
 **Model suite:**
 - StarCoder2-3B (4-bit)
